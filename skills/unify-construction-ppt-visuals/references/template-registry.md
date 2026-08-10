@@ -25,6 +25,16 @@
 
 楼层号、是否存在设备层、户型列数和总量不同只是数据差异，不得改变类型。
 
+满足下列多数特征时归为 `labor-workforce-plan`：
+
+- 出现“劳动力计划”“劳动力投入”“用工计划”“高峰期人数”等语义；
+- 行是测量、电焊、防水、木工、水电、泥水、涂料、安装、搬运等工种；
+- 列是月份、周次或施工时段；
+- 存在各时段合计、峰值投入或可从矩阵求得这些数据；
+- 阅读任务是先判断投入规模与峰值，再查看变化趋势，最后核查工种明细。
+
+原页是否只有表格、是否已有折线图、月份数量和工种数量不同，都不改变该类型。
+
 ## construction-zone-allocation-v1
 
 - `page_type`: `construction-zone-allocation`
@@ -51,6 +61,34 @@
 - 图标只用于稳定语义：施工区、楼层、班组、并行、资源总计。不得按页随机使用工人、建筑、齿轮等不同隐喻。
 - 图标不是可选装饰。两张 ZoneCard 固定使用 `zone`，FloorSpine 使用 `floors`，四类 CrewChip 使用 `crew`，ParallelConnector 使用 `parallel`，ResourceHeatmap 总计使用 `shared`；几何按 `icon-system.md` 冻结。
 
+## labor-workforce-plan-v1
+
+- `page_type`: `labor-workforce-plan`
+- `template_id`: `labor-workforce-plan-v1`
+- 默认辅助色：`none`；仅用中建蓝、浅蓝灰与唯一强调红
+- 默认视觉锚点：`assets/templates/labor-workforce-plan-v1.png`
+- 固定组件树：`Canvas > InsightBlock + PeakCard + TrendChart + WorkforceHeatmap`
+
+| 组件 | x | y | w | h | 固定规则 |
+|---|---:|---:|---:|---:|---|
+| InsightBlock | 3 | 4 | 77 | 13 | 上方放内容标签和管理结论；不绘制 PPT 页面表头 |
+| PeakCard | 82 | 4 | 15 | 13 | 峰值人数、单位和峰值月份固定右对齐 |
+| TrendChart | 3 | 20 | 94 | 29 | 蓝色折线与浅蓝面积；所有节点显示数值，唯一峰值节点为红色实心 |
+| WorkforceHeatmap | 3 | 54 | 94 | 43 | 工种 × 时段矩阵；顶部深蓝表头，底部深蓝合计行，峰值合计单元格为红色 |
+
+组件内部规则：
+
+- 阅读顺序固定为 InsightBlock → PeakCard → TrendChart → WorkforceHeatmap。结论先行、趋势解释、明细验证，四块不得换序。
+- InsightBlock 的内容标签优先使用“{标段/区域}｜施工劳动力投入”；管理结论逐字使用源文。源文缺失时仅使用数据派生固定句式，不补写原因。
+- PeakCard 显示精确最大合计 `peak_value` 和 `peak_month`；“约 230 人”等近似描述只能留在源文结论中，不得替代精确峰值。
+- TrendChart 的横轴时段顺序与矩阵列顺序完全相同。纵轴从 0 起，刻度上限取不小于峰值的整洁档位；禁止截断纵轴制造夸张变化。折线、面积、节点、数值标签坐标固定由数据计算。
+- WorkforceHeatmap 首列固定为工种，末行固定为合计。单元格蓝色强度按全矩阵统一数值域映射；0 值使用最浅底色，禁止按单行分别归一化导致跨工种不可比较。
+- 工种行顺序遵循源数据，不得按人数重新排序。需要突出持续主力工种时只允许加粗工种名和高值数字，不新增第二种彩色辅助色。
+- 红色仅用于 `peak_value`：PeakCard 数字、TrendChart 峰值节点/标签、合计行对应单元格。其他月份与普通热力单元格不得使用红色。
+- 月份/时段槽位支持 6–12 列，工种支持 8–16 行；在固定外框内等分列宽和行高。超出容量时升级模板版本并迁移同系列全部页面，不得局部压扁字号。
+- 不使用装饰性小图标。该页的精确数据图表与矩阵本身构成主要视觉语法，声明 `icon_plan: none — exact analytical matrix`。
+- 渲染前计算 `monthly_totals = sum(trade_rows)`、`peak_value = max(monthly_totals)`、`peak_month = argmax(monthly_totals)`，并核对源合计行。若并列峰值，所有并列峰值节点使用红色，但 PeakCard 按时间顺序列出月份，不擅自只选一个。
+
 ## 通用模板映射
 
 | page_type | template_id | 旧 layout |
@@ -62,6 +100,7 @@
 | bim | bim-application-v1 | bim |
 | schedule | schedule-milestones-v1 | schedule |
 | risk | risk-closed-loop-v1 | risk |
+| labor-workforce-plan | labor-workforce-plan-v1 | overview |
 
 通用模板用于尚未建立专用坐标合同的页面。若同一结构反复出现，新增专用版本化模板，登记组件树、百分比坐标、容量和溢出规则后再使用。不要把临时生成结果反向当成模板。
 

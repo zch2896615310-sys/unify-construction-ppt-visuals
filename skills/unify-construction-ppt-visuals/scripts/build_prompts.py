@@ -25,6 +25,7 @@ LAYOUTS = {
     "bim": "BIM: BIM model or application scene as the main visual; application explanation at one side; management value summary along the bottom.",
     "schedule": "Schedule: one aligned timeline or milestone system; use the only red solely for key dates or durations.",
     "risk": "Risk: map risk, measure, owner and outcome in a restrained four-column system or closed-loop process.",
+    "labor-workforce-plan": "Labor workforce plan: management insight and peak card at top, monthly total trend in the middle, exact trade-by-period heatmap and totals at the bottom.",
 }
 
 ACCENTS = {
@@ -44,6 +45,7 @@ DEFAULT_ACCENTS = {
     "schedule": "slate",
     "risk": "none",
     "construction-zone-allocation": "orange",
+    "labor-workforce-plan": "none",
 }
 
 DEFAULT_TEMPLATES = {
@@ -55,9 +57,30 @@ DEFAULT_TEMPLATES = {
     "schedule": "schedule-milestones-v1",
     "risk": "risk-closed-loop-v1",
     "construction-zone-allocation": "construction-zone-allocation-v1",
+    "labor-workforce-plan": "labor-workforce-plan-v1",
 }
 
 TEMPLATES = {
+    "labor-workforce-plan-v1": {
+        "page_type": "labor-workforce-plan",
+        "layout": "labor-workforce-plan",
+        "components": [
+            "Canvas",
+            "InsightBlock(x=3%,y=4%,w=77%,h=13%)",
+            "PeakCard(x=82%,y=4%,w=15%,h=13%)",
+            "TrendChart(x=3%,y=20%,w=94%,h=29%)",
+            "WorkforceHeatmap(x=3%,y=54%,w=94%,h=43%)",
+        ],
+        "capacity": (
+            "Support 6–12 ordered period columns and 8–16 trade rows inside fixed geometry. "
+            "Compute every period total from the trade matrix; use the same totals for the chart "
+            "and total row. PeakCard must equal max(period totals), with every tied peak declared. "
+            "Use red only for exact peak values. Preserve source trade order. Use one global heatmap "
+            "scale, with zero as the palest state. If the supplied totals conflict with computed sums, "
+            "stop and report the conflict instead of rendering. Type anchor: "
+            "assets/templates/labor-workforce-plan-v1.png. icon_plan: none — exact analytical matrix."
+        ),
+    },
     "construction-zone-allocation-v1": {
         "page_type": "construction-zone-allocation",
         "layout": "deployment",
@@ -122,6 +145,16 @@ def infer_page_type(page: dict) -> str:
         return str(explicit)
 
     searchable = json.dumps(page, ensure_ascii=False)
+    labor_markers = [
+        "劳动力" in searchable or "用工计划" in searchable,
+        "工种" in searchable,
+        "投入" in searchable or "人数" in searchable,
+        "合计" in searchable,
+        "峰值" in searchable or bool(re.search(r"\d+月", searchable)),
+    ]
+    if sum(labor_markers) >= 3:
+        return "labor-workforce-plan"
+
     markers = [
         "施工区" in searchable,
         "班组" in searchable,
@@ -283,4 +316,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
