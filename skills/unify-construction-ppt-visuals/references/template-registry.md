@@ -49,6 +49,7 @@
 - ResourceHeatmap 外框和总计位置固定。户型/资源列数可变，但在外框内等分；相同字段沿用同一颜色强度映射。
 - TotalBadge 固定在 SummaryCard 右端，不得在不同页面移到热力表旁或页面角落。
 - 图标只用于稳定语义：施工区、楼层、班组、并行、资源总计。不得按页随机使用工人、建筑、齿轮等不同隐喻。
+- 图标不是可选装饰。两张 ZoneCard 固定使用 `zone`，FloorSpine 使用 `floors`，四类 CrewChip 使用 `crew`，ParallelConnector 使用 `parallel`，ResourceHeatmap 总计使用 `shared`；几何按 `icon-system.md` 冻结。
 
 ## 通用模板映射
 
@@ -64,3 +65,4 @@
 
 通用模板用于尚未建立专用坐标合同的页面。若同一结构反复出现，新增专用版本化模板，登记组件树、百分比坐标、容量和溢出规则后再使用。不要把临时生成结果反向当成模板。
 
+所有通用模板都必须执行 `icon-system.md` 的触发判定。触发后，`icon_plan` 属于模板指纹：主要模块必须配置图标，且同一 `series_key + page_type` 的 icon_id、容器、尺寸和坐标不得漂移。

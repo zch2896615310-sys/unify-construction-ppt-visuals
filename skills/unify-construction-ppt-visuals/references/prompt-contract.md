@@ -7,6 +7,8 @@
 ```text
 STYLE LOCK — SAME SERIES, NOT A NEW DESIGN:
 Create one standalone content-area image with an exact 2:1 aspect ratio, default 2000×1000, in the same approved corporate visual system. This image will be placed below the user's own slide header. Generate content only: no page header, title band, company name or logo, project-name banner, chapter label, page number or footer. Premium Chinese state-owned construction enterprise presentation aesthetic; restrained, modern, professional and digitally enabled. China Construction blue remains dominant: #005BAC, #0068D9 and #EAF4FF with white/pale blue-gray occupy 75–90% of the visual area. The only red is #E60012, used sparingly for critical numbers, dates, risks or measures. Permit at most one semantic auxiliary color per page, covering 5–12% and never more than 15%: construction orange #F59E0B for construction stages/zones, digital teal #0F9FA8 for BIM/digital systems, acceptance green #2E9B65 for completion/acceptance, or neutral slate #64748B for secondary information. Use no auxiliary color when it has no clear semantic purpose. Modular white cards with identical subtle corner radius, pale-blue hairline borders, cool soft shadow, consistent spacing and alignment. Realistic neutral engineering photography; preserve source architecture, materials, geometry, perspective and spatial relationships. No style reinterpretation between pages.
+ICON LOCK:
+When the page contains three or more repeated modules/stages, an equipment or measure list, or mappings among construction zones, floors, crews or shared resources, render one semantic line icon for every major module. Use only the bundled construction icon family: identical 24×24 viewBox, rounded 1.8px equivalent stroke, fixed icon container, size and position. Default icon color is China Construction blue; construction-zone or machinery icons may use the single permitted orange accent, and completion icons may use acceptance green. Never omit all icons on an icon-triggering page. Never mix icon families, use emoji, or reuse one icon for unrelated meanings.
 NEGATIVE LOCK:
 No page header, title bar, company branding, logo, project banner, chapter marker, page number, footer, purple, pink, burgundy, dark red, large yellow areas, undefined new colors, multiple chromatic auxiliary colors on one page, auxiliary color covering more than 15%, random color changes across pages, neon, cyberpunk, glassmorphism, cartoon icons, colored emoji, random gradients, heavy shadows, mixed icon families, floating centered headline, dense Word-table appearance, altered architecture, invented construction facts, malformed hands, duplicated equipment, floating objects, inconsistent perspective or lighting.
 ```
@@ -80,16 +82,15 @@ Keep every component type, order, position, size, corner radius, icon meaning an
 | 语义与内容准确 | 25 | 页面目的、实体、关系、阅读顺序正确；文字、数字和施工顺序完整 |
 | 原图保真 | 20 | 建筑、材质、比例、空间、BIM 关系未变 |
 | 色彩一致 | 15 | 中建蓝占主导；辅助色语义与占比合规；唯一红；无禁用色 |
-| 构图一致 | 15 | 内容网格、边距、卡片系统稳定，无页面标题区 |
+| 构图一致 | 15 | 内容网格、边距、卡片系统稳定，无页面标题区；应触发时主要模块图标完整 |
 | 模板一致 | 10 | 同类页面模板 ID、指纹、组件树、坐标、槽位顺序完全相同 |
 | 图片一致 | 10 | 色温、曝光、裁切、设备融合真实 |
 | 输出合规 | 5 | 一页一图、严格 2:1、仅内容区、无表头页脚、无拼图 |
 
-未建立语义模型、语义关系表达错误、任一内容错误、原图结构改变、同类页面模板 ID/指纹不一致、组件坐标漂移、禁用色、辅助色超过 15%、单页出现多种彩色辅助色、非 2:1 比例或任何表头/页脚元素出现都算硬失败，不因总分较高而放行。合格线为 90 分。
+未建立语义模型、语义关系表达错误、任一内容错误、原图结构改变、同类页面模板 ID/指纹不一致、组件坐标漂移、应触发图标却整页无图标或主要模块缺图标、图标语义错误或混用图标库、禁用色、辅助色超过 15%、单页出现多种彩色辅助色、非 2:1 比例或任何表头/页脚元素出现都算硬失败，不因总分较高而放行。合格线为 90 分。
 
 ## 6. 定向返工语句
 
 ```text
 LOCAL CORRECTION ONLY. Keep every approved element unchanged. Correct only: {failed_items}. Preserve the fixed STYLE LOCK, page composition, source architecture, all correct text, colors, spacing and approved imagery. Do not redesign the page.
 ```
-

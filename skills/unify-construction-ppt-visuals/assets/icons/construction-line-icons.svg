@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>.i{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}</style>
+  </defs>
+  <symbol id="scaffold" viewBox="0 0 24 24"><g class="i"><path d="M5 21V3M19 21V3M5 7h14M5 13h14M5 19h14M6 4l12 15M18 4 6 19"/></g></symbol>
+  <symbol id="platform" viewBox="0 0 24 24"><g class="i"><path d="M5 18h14M7 18V7h10v11M7 10h10M9 7V4M15 7V4M5 4h14M8 21h.01M16 21h.01"/></g></symbol>
+  <symbol id="scissor-lift" viewBox="0 0 24 24"><g class="i"><path d="M5 4h14v4H5zM7 8l10 10M17 8 7 18M6 18h12v3H6z"/></g></symbol>
+  <symbol id="power" viewBox="0 0 24 24"><g class="i"><rect x="3" y="6" width="16" height="12" rx="2"/><path d="M19 10h2v4h-2M11 8l-3 5h4l-2 3"/></g></symbol>
+  <symbol id="tool" viewBox="0 0 24 24"><g class="i"><path d="M4 8h10l3 3v4H9l-2-2H4zM17 12h3M7 15v5h4v-5"/></g></symbol>
+  <symbol id="charging" viewBox="0 0 24 24"><g class="i"><path d="M4 21V5l8-3 8 3v16M8 21v-5h8v5M8 8h.01M12 8h.01M16 8h.01"/><path d="m13 10-2 3h3l-2 3"/></g></symbol>
+  <symbol id="cart" viewBox="0 0 24 24"><g class="i"><path d="M4 6h2l2 10h10l2-7H7M9 20h.01M17 20h.01"/></g></symbol>
+  <symbol id="forklift" viewBox="0 0 24 24"><g class="i"><path d="M3 18h13V8H8v10M16 5v13h5M19 5h2M17 18h4M6 21h.01M15 21h.01M8 8l2-3h4l2 3"/></g></symbol>
+  <symbol id="plan" viewBox="0 0 24 24"><g class="i"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M7 14h4M7 17h7"/></g></symbol>
+  <symbol id="sample" viewBox="0 0 24 24"><g class="i"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8M8 12h5M8 16h7M16 14l2 2 3-4"/></g></symbol>
+  <symbol id="measure" viewBox="0 0 24 24"><g class="i"><path d="m5 19 14-14 2 2L7 21zM13 9l2 2M10 12l2 2M7 15l2 2"/></g></symbol>
+  <symbol id="layers" viewBox="0 0 24 24"><g class="i"><path d="m12 3 9 5-9 5-9-5zM3 12l9 5 9-5M3 16l9 5 9-5"/></g></symbol>
+  <symbol id="droplet" viewBox="0 0 24 24"><g class="i"><path d="M12 2S5 10 5 15a7 7 0 0 0 14 0c0-5-7-13-7-13zM9 16a3 3 0 0 0 3 3"/></g></symbol>
+  <symbol id="finish" viewBox="0 0 24 24"><g class="i"><rect x="4" y="4" width="12" height="16" rx="1"/><path d="M8 8h4M8 12h4M18 7l1-2 1 2 2 1-2 1-1 2-1-2-2-1z"/></g></symbol>
+  <symbol id="install" viewBox="0 0 24 24"><g class="i"><path d="M14 6a4 4 0 0 0-5 5L3 17l4 4 6-6a4 4 0 0 0 5-5l-3 3-3-3z"/></g></symbol>
+  <symbol id="tune" viewBox="0 0 24 24"><g class="i"><path d="M4 6h16M4 12h16M4 18h16M8 3v6M16 9v6M10 15v6"/></g></symbol>
+  <symbol id="acceptance" viewBox="0 0 24 24"><g class="i"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></g></symbol>
+  <symbol id="building" viewBox="0 0 24 24"><g class="i"><path d="M4 21V5l8-3 8 3v16M8 7h1M12 7h1M16 7h1M8 11h1M12 11h1M16 11h1M9 21v-5h6v5"/></g></symbol>
+  <symbol id="zone" viewBox="0 0 24 24"><g class="i"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16M6 8h3M15 8h3M6 12h3M15 12h3"/></g></symbol>
+  <symbol id="floors" viewBox="0 0 24 24"><g class="i"><path d="M5 20h14M6 20V4h12v16M6 8h12M6 12h12M6 16h12"/></g></symbol>
+  <symbol id="crew" viewBox="0 0 24 24"><g class="i"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20c0-4 2-7 6-7s6 3 6 7M14 14c4 0 6 2 6 6"/></g></symbol>
+  <symbol id="parallel" viewBox="0 0 24 24"><g class="i"><path d="M4 8h14M15 5l3 3-3 3M20 16H6M9 13l-3 3 3 3"/></g></symbol>
+  <symbol id="flow" viewBox="0 0 24 24"><g class="i"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 12h3M14 12h3M17 9l2 3-2 3"/></g></symbol>
+  <symbol id="shared" viewBox="0 0 24 24"><g class="i"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="m7 7 3 3M17 7l-3 3M7 17l3-3M17 17l-3-3"/></g></symbol>
+ </svg>
