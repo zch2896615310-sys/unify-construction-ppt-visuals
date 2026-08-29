@@ -2,4 +2,3 @@ interface:
   display_name: "工程技术标 PPT 统一视觉"
   short_description: "以中建蓝和受控辅助色统一 2:1 工程 PPT 内容区视觉"
   default_prompt: "Use $unify-construction-ppt-visuals to generate consistent 2:1 content-only images without slide headers for my engineering PPT."
-

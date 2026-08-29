@@ -36,7 +36,7 @@
 3. 中建蓝、白色和浅蓝灰占绝对主导，辅助色具有固定语义。
 4. 重复模块、阶段、设备、施工区和班组页面强制使用统一线性图标系统。
 5. 中文文字、数字、专业逻辑和源图事实优先于装饰效果。
-6. 默认使用确定性分层合成，避免依赖随机整页生成。
+6. 每个输出页面必须由 ImageGen 独立完成整页生成或整页编辑；确定性工具仅用于内容提取、数据计算、尺寸检查和少量精确修正。
 
 ## 示例
 
@@ -54,7 +54,11 @@
 skills/unify-construction-ppt-visuals/
 ├── SKILL.md
 ├── agents/openai.yaml
+├── assets/
+│   ├── icons/construction-line-icons.svg
+│   └── templates/labor-workforce-plan-v1.png
 ├── references/
+│   ├── icon-system.md
 │   ├── prompt-contract.md
 │   ├── style-bible.md
 │   └── template-registry.md
