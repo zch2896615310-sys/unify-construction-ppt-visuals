@@ -41,7 +41,7 @@
 
 - `page_type`: `construction-zone-allocation`
 - `template_id`: `construction-zone-allocation-v1`
-- 默认辅助色：`orange`
+- 默认主辅助色：`orange`；默认微辅助色：`none`
 - 固定组件树：`Canvas > SummaryCard + ZoneCardA + FloorSpine + ZoneCardB + ParallelConnector + ResourceHeatmap`
 
 | 组件 | x | y | w | h | 固定规则 |
@@ -59,6 +59,7 @@
 - FloorSpine 始终保留 8 个位置。设备层或不施工层使用蓝灰斜纹 `excluded` 状态；数据不足使用 `empty` 状态，不删除槽位。超过 8 个楼层时升级为新模板版本并让同组页面全部迁移。
 - CrewChip 顺序固定为木工、水电、泥水、涂料；缺项显示 0 或“未配置”，不改变顺序，不换图标。
 - ResourceHeatmap 外框和总计位置固定。户型/资源列数可变，但在外框内等分；相同字段沿用同一颜色强度映射。
+- 工程橙控制在 6%–10%，只落在施工区、阶段和机械语义；非施工状态使用暖象牙或蓝灰中性表面，禁止把三大主体区全部铺成浅蓝。
 - TotalBadge 固定在 SummaryCard 右端，不得在不同页面移到热力表旁或页面角落。
 - 图标只用于稳定语义：施工区、楼层、班组、并行、资源总计。不得按页随机使用工人、建筑、齿轮等不同隐喻。
 - 图标不是可选装饰。两张 ZoneCard 固定使用 `zone`，FloorSpine 使用 `floors`，四类 CrewChip 使用 `crew`，ParallelConnector 使用 `parallel`，ResourceHeatmap 总计使用 `shared`；几何按 `icon-system.md` 冻结。
@@ -67,7 +68,7 @@
 
 - `page_type`: `labor-workforce-plan`
 - `template_id`: `labor-workforce-plan-v1`
-- 默认辅助色：`none`；仅用中建蓝、浅蓝灰与唯一强调红
+- 默认主辅助色：`none`；默认微辅助色：`none`；使用中建蓝、白、暖象牙、浅中性灰与唯一强调红
 - 默认视觉锚点：`assets/templates/labor-workforce-plan-v1.png`
 - 固定组件树：`Canvas > InsightBlock + PeakCard + TrendChart + WorkforceHeatmap`
 
@@ -84,11 +85,13 @@
 - InsightBlock 的内容标签优先使用“{标段/区域}｜施工劳动力投入”；管理结论逐字使用源文。源文缺失时仅使用数据派生固定句式，不补写原因。
 - PeakCard 显示精确最大合计 `peak_value` 和 `peak_month`；“约 230 人”等近似描述只能留在源文结论中，不得替代精确峰值。
 - TrendChart 的横轴时段顺序与矩阵列顺序完全相同。纵轴从 0 起，刻度上限取不小于峰值的整洁档位；禁止截断纵轴制造夸张变化。折线、面积、节点、数值标签坐标固定由数据计算。
-- WorkforceHeatmap 首列固定为工种，末行固定为合计。单元格蓝色强度按全矩阵统一数值域映射；0 值使用最浅底色，禁止按单行分别归一化导致跨工种不可比较。
-- 工种行顺序遵循源数据，不得按人数重新排序。需要突出持续主力工种时只允许加粗工种名和高值数字，不新增第二种彩色辅助色。
+- WorkforceHeatmap 首列固定为工种，末行固定为合计。单元格蓝色强度按全矩阵统一数值域映射；0 值使用暖象牙 `#F7F4EE` 或近白中性灰，低值才进入浅蓝，高值使用中蓝，禁止按单行分别归一化导致跨工种不可比较。
+- 本模板默认 `accent: none`、`micro_accent: none` 且不依赖源图，因此白色与浅中性色可占 68%–82%；中建蓝目标仍为 18%–25%、硬上限 30%。不得为了补足通用配色比例添加橙、青、绿或其他无数据语义的色块。
+- 工种行顺序遵循源数据，不得按人数重新排序。需要突出持续主力工种时只允许加粗工种名和高值数字，不新增主辅助色或微辅助色。
 - 红色仅用于 `peak_value`：PeakCard 数字、TrendChart 峰值节点/标签、合计行对应单元格。其他月份与普通热力单元格不得使用红色。
 - 月份/时段槽位支持 6–12 列，工种支持 8–16 行；在固定外框内等分列宽和行高。超出容量时升级模板版本并迁移同系列全部页面，不得局部压扁字号。
 - 不使用装饰性小图标。该页的精确数据图表与矩阵本身构成主要视觉语法，声明 `icon_plan: none — exact analytical matrix`。
+- 该页蓝色系目标占 18%–25%，复杂矩阵不得超过 30%；图表外的非数据表面优先使用白、暖象牙和暖灰细描边，禁止用浅蓝填满所有留白。红色只承担峰值，不为了达到面积比例扩大红色。
 - 渲染前计算 `monthly_totals = sum(trade_rows)`、`peak_value = max(monthly_totals)`、`peak_month = argmax(monthly_totals)`，并核对源合计行。若并列峰值，所有并列峰值节点使用红色，但 PeakCard 按时间顺序列出月份，不擅自只选一个。
 
 ## labor-workforce-plan-long-v1
@@ -96,7 +99,7 @@
 - `page_type`: `labor-workforce-plan`
 - `template_id`: `labor-workforce-plan-long-v1`
 - 适用容量：13–30 个连续月份、8–16 个工种
-- 默认辅助色：`none`；仅用中建蓝、浅蓝灰与唯一强调红
+- 默认主辅助色：`none`；默认微辅助色：`none`；使用中建蓝、白、暖象牙、浅中性灰与唯一强调红
 - 类型级视觉锚点：`assets/templates/labor-workforce-plan-v1.png`
 - 固定组件树：`Canvas > PhaseInsightA + PhaseInsightB + PeakCard + LongTrendChart + LongWorkforceHeatmap`
 
@@ -114,16 +117,18 @@
 - 两个阶段结论逐字保留源文，不用精确峰值反向改写原文中的“约”“高峰期范围”等管理表达；PeakCard 单独显示由矩阵计算得到的全周期精确峰值。
 - LongTrendChart 和 LongWorkforceHeatmap 共享同一 13–30 列等分时段网格，并按年份增加固定分组表头。横轴不得抽样、合并月份或省略零值月份。
 - 趋势图节点、合计行和 PeakCard 必须引用同一 `monthly_totals`。红色只落在全部并列最大值对应的 PeakCard 数字、趋势节点/标签与合计单元格。
-- 热力矩阵首列固定为工种，末行固定为合计；工种顺序与源表一致。全矩阵采用统一中建蓝强度域，0 值使用最浅底色。
+- 热力矩阵首列固定为工种，末行固定为合计；工种顺序与源表一致。全矩阵采用统一中建蓝强度域，0 值使用暖象牙或近白中性灰，低值才进入浅蓝。
 - 26–30 列时允许矩阵数字使用该模板登记的小号数据字级，但阶段结论、峰值卡和趋势标签不得缩小；不得为单页改变框架坐标、列间距或年份分组高度。
 - `icon_plan: none — exact analytical matrix`。该类型不添加装饰性图标，数据图表和热力矩阵本身构成视觉语法。
+- 长周期页同样控制蓝色系不超过 30%，并用白/暖中性非数据表面分隔年份与阶段，不允许用第二业务色区分年份。
+- 本模板同样适用分析页比例例外：默认主、微辅助色均为 `none` 且无源图时，白色与浅中性色可占 68%–82%，不得为了凑色增加无语义的业务色。
 - 所有 PrimaryFrame 继续使用全局 `x=3%`、`right=97%` 对齐线；默认 2000px 宽画布同侧边界误差不得超过 2px。
 
 ## risk-analysis-measures-series-v1
 
 - `page_type`: `risk-analysis-measures-series`
 - `template_id`: `risk-analysis-measures-series-v1`
-- 固定系列辅助色：工程橙只用于“措施”短线微标识；页面可按语义使用至多一种不超过 3% 的补充色
+- 固定微辅助色：`orange`，只用于“措施”短线微标识且不超过 1%；页面主辅助色按语义选择，目标 6%–10%、硬上限 10%，主/微合计不得超过 12%
 - 固定组件树：`Canvas > AnalysisHeader + MeasuresHeader + ContentBody`
 
 | 组件 | x | y | w | h | 固定规则 |
@@ -151,7 +156,7 @@
 - `page_type`: `overview`
 - `template_id`: `material-quantity-top10-v1`
 - 适用内容：6–10 类主要材料/设备的工程量对比，同时需要保留逐项详细说明
-- 默认辅助色：`none`；界面只用中建蓝、白、浅蓝灰与唯一强调红，材料缩略图的自然色不计入辅助色
+- 默认主辅助色：`none`；默认微辅助色：`none`；界面使用中建蓝、白、暖象牙、浅中性灰与唯一强调红，材料缩略图的自然色不计入辅助色
 - 固定组件树：`Canvas > InsightLine + QuantityRanking + MaterialDetailGrid`
 - 固定 `icon_plan`: `section-header -> semantic-line`; `QuantityRanking -> none — exact bar chart`; `MaterialDetailGrid items -> realistic-thumbnail`
 
@@ -167,6 +172,7 @@
 - 工程量单位逐字保留。不同量纲可以同页比较展示，但不得伪装为可直接相加的统一统计口径；柱高只表达源页登记的排名或采用注明的视觉缩放。
 - `MaterialDetailGrid` 容量为 6–10 项；6 项使用 2×3，7–8 项使用 2×4，9–10 项使用 2×5。两行卡片高度相等，同列边界对齐。
 - 写实缩略图遵循 `icon-system.md` 的 `realistic-thumbnail`：统一约 3/4 视角、白底抠图、中性棚拍光、柔和接触阴影、无品牌、无文字。材料自然色只用于物体本身，UI 仍由中建蓝主导。
+- 材料自然色在有真实来源时优先承担约 8%–18% 的页面色彩层次；禁止给木材、石材、金属和玻璃统一套蓝色滤镜。无材料图时不得为配色丰富虚构材料缩略图。
 - 栏目级小图标可使用 `semantic-line`，下方材料明细卡使用 `realistic-thumbnail`；不得在上方工程量柱中放图标或缩略图，也不得在下方材料条目中混入线性或卡通图标。
 - 红色默认只用于登记过的关键结论短语与逐项数量；当页面的分析任务就是工程量排名时，10 个数量属于一个“分析数据系列”，允许整组使用唯一强调红，不受通常 1–3 个短语上限约束，但红色面积仍不得超过画布 5%。
 - 所有文字和工程说明逐字保留；密度不足时先缩短行宽、压缩段间距，再使用模板登记的小号注释字级，不能删项或概括。

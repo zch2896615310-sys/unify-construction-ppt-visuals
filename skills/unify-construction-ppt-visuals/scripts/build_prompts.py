@@ -12,11 +12,11 @@ from pathlib import Path
 
 
 STYLE_LOCK = """STYLE LOCK — SAME SERIES, NOT A NEW DESIGN:
-Create one standalone content-area image with an exact 2:1 aspect ratio, default 2000×1000, in the same approved corporate visual system. This image will be placed below the user's own slide header. Generate content only: no page header, title band, company name or logo, project-name banner, chapter label, page number or footer. The bottom canvas must be pure white #FFFFFF with no gradient, blueprint line art, grid, coordinates, noise, paper grain, watermark or any other texture. Texture, low-contrast line art and semantic color fills are permitted only inside cards and must be clipped cleanly to card boundaries. Every top-level PrimaryFrame must share the same vertical alignment rails: left edge x=3% and right edge x=97% (w=94%). Different internal column counts may not change those outer edges. Premium Chinese state-owned construction enterprise presentation aesthetic; restrained, modern, professional and digitally enabled. China Construction blue remains dominant: #005BAC, #0068D9 and #EAF4FF with white/pale blue-gray occupy 75–90% of the visual area. The only red is #E60012, used sparingly for verbatim critical numbers, dates, risks, key words or phrases, key actions, results or measures registered in critical_phrases; never color a whole sentence or paragraph red. Permit at most one semantic auxiliary color per page, covering 5–12% and never more than 15%: construction orange #F59E0B for construction stages/zones, digital teal #0F9FA8 for BIM/digital systems, acceptance green #2E9B65 for completion/acceptance, or neutral slate #64748B for secondary information. Use no auxiliary color when it has no clear semantic purpose. Exception only for risk-analysis-measures-series-v1: the fixed orange MeasuresHeader micro-marker may coexist at no more than 1% of the canvas with one additional semantic accent at no more than 3%; total chromatic auxiliary coverage still must not exceed 15%. Modular white cards with identical subtle corner radius, pale-blue hairline borders, cool soft shadow, consistent spacing and alignment. Realistic neutral engineering photography; preserve source architecture, materials, geometry, perspective and spatial relationships. No style reinterpretation between pages.
+Create one standalone content-area image with an exact 2:1 aspect ratio, default 2000×1000, in the same approved corporate visual system. This image will be placed below the user's own slide header. Generate content only: no page header, title band, company name or logo, project-name banner, chapter label, page number or footer. The bottom canvas must be pure white #FFFFFF with no gradient, blueprint line art, grid, coordinates, noise, paper grain, watermark or any other texture. Texture, low-contrast line art and semantic color fills are permitted only inside cards and must be clipped cleanly to card boundaries. Every top-level PrimaryFrame must share the same vertical alignment rails: left edge x=3% and right edge x=97% (w=94%). Different internal column counts may not change those outer edges. Premium Chinese state-owned construction enterprise presentation aesthetic; restrained, modern, professional and digitally enabled. Use pure white and light neutrals for 55–68% of the visual area. On analytical data pages such as workforce matrices, plans and statistical tables, when accent and micro_accent are both none and no source photography/material/equipment is present, do not add meaningless colors merely to satisfy the general ratio; white and light neutrals may expand to 68–82%. China Construction blue #005BAC, #0068D9 and #EAF4FF must still control key hierarchy, titles and data paths while occupying a target 18–25% and never more than 30%; keep saturated deep/standard blue around 8–15% rather than tinting every surface blue. Warm ivory #F7F4EE and warm gray #E8E2D8 may appear only inside cards, zero-value cells, dividers and non-data surfaces; the bottom canvas stays pure white. The only red is #E60012, normally below 3%, used sparingly for verbatim critical content registered in critical_phrases; never color a whole sentence or paragraph red. Permit one declared main semantic accent per page, targeting 6–10% and never more than 10%. Permit one different declared micro_accent only when a second source-grounded semantic state must be distinguished; keep it below 3% and keep main plus micro accents below 12%. Preserve source photography, materials, equipment and renderings in their real natural colors; when present, let those natural colors provide roughly 8–18% of the visual area and do not count them as UI accents. When source imagery is absent, do not invent it to satisfy a color ratio; use restrained warm-neutral card surfaces instead. Modular cards use white, warm ivory or pale blue according to hierarchy, with identical subtle corner radius, pale blue-gray or warm-neutral hairline borders, neutral soft shadow, consistent spacing and alignment. Avoid three or more consecutive PrimaryFrames with the same pale-blue fill. No style reinterpretation between pages.
 CONTENT FIDELITY AND DIAGRAM LOCK:
 Render each source fact, sentence or complete semantic unit exactly once. Never repeat the same paragraph in a summary, body card, caption or flow node to fill space. A diagram may use only the shortest labels needed to identify objects and relationships. When one source paragraph contains two or more independently understandable causes, conditions, actions, steps, results or recommendations, split it into faithful ordered bullet points without inventing headings, conclusions or hierarchy and without changing wording, causality or sequence. Build source_content_slots and visual_reasoning_plan before layout. Do not use a fixed visual priority order; combine retained source imagery, faithful bullet points and diagrams according to the page's communication task and evidence. Generate measures visuals only when the source explicitly contains measures. Absence of measures forbids invented solutions but does not forbid diagrams about existing analysis, thinking, questions, causes, conditions, mechanisms, effects, object relationships, processes, data or evidence. If two or more explicit relationships are difficult to scan as prose, diagram_opportunity is required. Unconnected icons, numbered cards or repeated text do not satisfy a required relationship or mechanism diagram. Use non-photorealistic engineering information graphics for added diagrams, not invented realistic project scenes. If technical detail is uncertain, verify it; research may clarify general depiction but may not add project facts. If uncertainty remains, downgrade to an abstract source-traceable relationship rather than assuming the whole page cannot contain a diagram. Never guess a construction detail, dimension, material layer, routing, cause or solution.
 NEGATIVE LOCK:
-No page header, title bar, company branding, logo, project banner, chapter marker, page number, footer, non-white bottom canvas, full-canvas texture, blueprint background, grid background, watermark, gradient background, top-level frames with different left/right edges, texture bleeding outside cards, purple, pink, burgundy, dark red, large yellow areas, undefined new colors, auxiliary color covering more than 15%, random color changes across pages, full red sentences or paragraphs, neon, cyberpunk, glassmorphism, cartoon icons, colored emoji, random gradients, heavy shadows, mixed icon families, floating centered headline, dense Word-table appearance, altered architecture, invented construction facts, repeated source paragraphs, duplicate text cards, unsupported schematics, inferred measures absent from the source, malformed hands, duplicated equipment, floating objects, inconsistent perspective or lighting."""
+No page header, title bar, company branding, logo, project banner, chapter marker, page number, footer, non-white bottom canvas, full-canvas texture, blueprint background, grid background, watermark, gradient background, top-level frames with different left/right edges, texture bleeding outside cards, purple, pink, burgundy, dark red, large yellow areas, undefined new colors, more than one main semantic accent, any undeclared micro_accent, micro_accent above 3%, main accent above 10%, combined main and micro accents above 12%, China Construction blue family above 30%, large uninterrupted pale-blue fields, source photos or materials globally tinted blue, random color changes across pages, full red sentences or paragraphs, neon, cyberpunk, glassmorphism, cartoon icons, colored emoji, random gradients, heavy shadows, mixed icon families, floating centered headline, dense Word-table appearance, altered architecture, invented construction facts, repeated source paragraphs, duplicate text cards, unsupported schematics, inferred measures absent from the source, malformed hands, duplicated equipment, floating objects, inconsistent perspective or lighting."""
 
 
 LAYOUTS = {
@@ -32,11 +32,19 @@ LAYOUTS = {
 }
 
 ACCENTS = {
-    "none": "No chromatic auxiliary color; use only the fixed blue system, neutrals, and the unique red when semantically required.",
-    "orange": "Use construction orange #F59E0B (pale tint #FFF4D6) only for construction stages, zones, or equipment; keep it within 5–12% of the page.",
-    "teal": "Use digital teal #0F9FA8 (pale tint #E6F7F7) only for BIM, digital systems, or data applications; keep it within 5–12% of the page.",
-    "green": "Use acceptance green #2E9B65 (pale tint #EAF7F0) only for completion, acceptance, or compliant status; keep it within 5–12% of the page.",
-    "slate": "Use neutral slate #64748B (pale tint #F1F5F9) only for secondary information and neutral states.",
+    "none": "No main chromatic auxiliary color. Use white/warm-neutral surfaces, the controlled blue hierarchy, source-natural colors, and the unique red only when semantically required; do not compensate by adding more blue.",
+    "orange": "Use construction orange #F59E0B (pale tint #FFF4D6) only for construction stages, zones, or equipment; target 6–10% and never exceed 10% of the page.",
+    "teal": "Use digital teal #0F9FA8 (pale tint #E6F7F7) only for BIM, digital systems, or data applications; target 6–10% and never exceed 10% of the page.",
+    "green": "Use acceptance green #2E9B65 (pale tint #EAF7F0) only for completion, acceptance, or compliant status; target 6–10% and never exceed 10% of the page.",
+    "slate": "Use neutral slate #64748B (pale tint #F1F5F9) only for secondary information and neutral states; it remains a neutral hierarchy color rather than a decorative hue.",
+}
+
+MICRO_ACCENTS = {
+    "none": "No micro accent. Do not add a second hue merely for visual variety.",
+    "orange": "Use construction orange #F59E0B only for a second, source-grounded construction-stage/zone/measure state; keep it below 3%.",
+    "teal": "Use digital teal #0F9FA8 only for a second, source-grounded BIM/digital state; keep it below 3%.",
+    "green": "Use acceptance green #2E9B65 only for a second, source-grounded completion/acceptance state; keep it below 3%.",
+    "slate": "Use slate #64748B only as a registered micro-level neutral state; keep it below 3%.",
 }
 
 DEFAULT_ACCENTS = {
@@ -47,9 +55,14 @@ DEFAULT_ACCENTS = {
     "bim": "teal",
     "schedule": "slate",
     "risk": "none",
-    "risk-analysis-measures-series": "orange",
+    "risk-analysis-measures-series": "none",
     "construction-zone-allocation": "orange",
     "labor-workforce-plan": "none",
+}
+
+DEFAULT_MICRO_ACCENTS = {
+    page_type: ("orange" if page_type == "risk-analysis-measures-series" else "none")
+    for page_type in DEFAULT_ACCENTS
 }
 
 DEFAULT_TEMPLATES = {
@@ -82,8 +95,9 @@ TEMPLATES = {
             "density state based on the supplied entities and image count. Keep the body outer frame and "
             "top/bottom baselines fixed. Render only 1–3 verbatim critical_phrases in #E60012; never color "
             "a full sentence or paragraph red. The fixed orange MeasuresHeader micro-marker may use at most "
-            "1% of the canvas; one additional semantic accent may use at most 3%; total auxiliary color remains "
-            "below 15%. Upgrade the template and migrate the whole series if content exceeds these states."
+            "1% of the canvas as micro_accent orange; one main semantic accent may target 6–10% and never "
+            "exceed 10%; main plus micro accents remain below 12%. Upgrade the template and migrate the whole "
+            "series if content exceeds these states."
         ),
     },
     "labor-workforce-plan-v1": {
@@ -280,6 +294,19 @@ def resolve_page(page: dict, warnings: list[str]) -> dict:
         warnings.append(f"Page {page.get('page', '?')}: unknown accent '{accent_name}', used '{fallback}'.")
         accent_name = fallback
 
+    micro_accent_name = str(page.get("micro_accent", DEFAULT_MICRO_ACCENTS[page_type]))
+    if micro_accent_name not in MICRO_ACCENTS:
+        fallback = DEFAULT_MICRO_ACCENTS[page_type]
+        warnings.append(
+            f"Page {page.get('page', '?')}: unknown micro_accent '{micro_accent_name}', used '{fallback}'."
+        )
+        micro_accent_name = fallback
+    if accent_name != "none" and accent_name == micro_accent_name:
+        raise ValueError(
+            f"Page {page.get('page', '?')}: accent and micro_accent cannot use the same non-none color "
+            f"'{accent_name}'. Use micro_accent 'none' or a different source-grounded semantic color."
+        )
+
     resolved = dict(page)
     visual_reasoning_plan = page.get("visual_reasoning_plan")
     if not visual_reasoning_plan:
@@ -303,6 +330,7 @@ def resolve_page(page: dict, warnings: list[str]) -> dict:
             "template_fingerprint": template_fingerprint(template_id),
             "series_key": str(page.get("series_key", page_type)),
             "accent": accent_name,
+            "micro_accent": micro_accent_name,
             "layout": TEMPLATES[template_id]["layout"],
             "semantic_model": semantic_model,
             "source_content_slots": source_content_slots,
@@ -317,14 +345,20 @@ def resolve_page(page: dict, warnings: list[str]) -> dict:
 
 
 def validate_series(pages: list[dict]) -> None:
-    locks: dict[tuple[str, str], tuple[str, str, str]] = {}
+    locks: dict[tuple[str, str], tuple[str, str, str, str]] = {}
     for page in pages:
         key = (page["series_key"], page["page_type"])
-        value = (page["template_id"], page["template_fingerprint"], page["accent"])
+        value = (
+            page["template_id"],
+            page["template_fingerprint"],
+            page["accent"],
+            page["micro_accent"],
+        )
         if key in locks and locks[key] != value:
             prior = locks[key]
             raise ValueError(
-                f"Series '{key[0]}' / page_type '{key[1]}' drifted: expected template/fingerprint/accent "
+                f"Series '{key[0]}' / page_type '{key[1]}' drifted: expected "
+                "template/fingerprint/accent/micro_accent "
                 f"{prior}, got {value} on page {page.get('page', '?')}."
             )
         locks[key] = value
@@ -368,8 +402,12 @@ Visual reasoning plan:
 {lines(page['visual_reasoning_plan'])}
 Diagram plan and evidence boundary:
 {lines(page['diagram_plan'])}
-Auxiliary color plan — {page['accent']}:
+Main auxiliary color plan — {page['accent']}:
 {ACCENTS[page['accent']]}
+Micro auxiliary color plan — {page['micro_accent']}:
+{MICRO_ACCENTS[page['micro_accent']]}
+Neutral-surface and source-natural-color plan:
+Keep white and light neutrals at 55–68%, China Construction blue at a target 18–25% and below 30%, saturated blue around 8–15%, and red below 3%. For analytical data pages with accent none, micro_accent none and no source imagery/material/equipment, white and light neutrals may expand to 68–82%; never add a meaningless business color to fill the difference. Use warm ivory #F7F4EE or warm gray #E8E2D8 only inside cards, zero-value cells, dividers and non-data surfaces. Preserve real source photography/material colors; when present, let them provide roughly 8–18% of the page without counting as UI accents. Never invent imagery or a second business color merely to reach a ratio.
 Allowed changes before template freeze: grouping, information architecture, hierarchy, visual form, line breaks, alignment and spacing. Allowed changes after template freeze: populate declared template slots only.
 Do not omit, summarize, translate, invent or alter any supplied text, number or engineering fact.
 Do not render any content slot absent from source_content_slots. Each source statement appears once. Split multi-point paragraphs faithfully and use evidence-based diagrams instead of repeated copy. Do not set diagram_opportunity to none merely because measures are absent. If diagram_opportunity is required, unconnected icons or numbered cards are not an acceptable substitute for a relationship or mechanism diagram.
